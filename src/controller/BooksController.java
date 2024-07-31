@@ -16,10 +16,10 @@ import service.custom.BooksService;
  */
 public class BooksController {
 
-    private BooksService booksService = (BooksService)ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.Books);
+    private static BooksService booksService = (BooksService)ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.Books);
 
 
-    public String save(BooksDto booksDto) throws Exception{
+    public static String save(BooksDto booksDto) throws Exception{
        return booksService.save(booksDto);
     }
     public String update(BooksDto booksDto) throws Exception{
