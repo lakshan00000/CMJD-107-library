@@ -152,5 +152,16 @@ public class BooksDto {
     }
     
    
-    
+    @Override
+    public String toString() {
+        return "BooksDto{" +
+                "bookId='" + book_id + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", categoryId='" + category_id + '\'' +
+                ", available=" + available +
+                ", bookCount=" + book_count +
+                '}';
+    }
 }

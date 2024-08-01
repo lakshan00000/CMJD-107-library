@@ -28,7 +28,7 @@ public class BooksController {
     public String delete (BooksDto booksDto) throws Exception{
         return booksService.delete(booksDto);
     }
-    public ArrayList<BooksDto>getAll() throws Exception{
+    public static ArrayList<BooksDto>getAll() throws Exception{
         return booksService.getAll() ;
     }
 

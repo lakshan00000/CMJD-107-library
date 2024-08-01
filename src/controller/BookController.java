@@ -1,13 +1,50 @@
 package controller;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import dto.BooksDto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BookController  {
+
+    @FXML
+    private TableView<BooksDto> tblBooks;
+
     
+    @FXML
+    private TableColumn<BooksDto, String> colAuthor;
+
+    @FXML
+    private TableColumn<BooksDto, Boolean> colAvailable;
+
+    @FXML
+    private TableColumn<BooksDto, String> colCId;
+
+    @FXML
+    private TableColumn<BooksDto, Integer> colCount;
+
+    @FXML
+    private TableColumn<BooksDto, String> colId;
+
+    @FXML
+    private TableColumn<BooksDto, String> colIsbn;
+
+    @FXML
+    private TableColumn<BooksDto, String> colTitle;
+
+       @FXML
+    private Button btnReload;
+
        @FXML
     private Button btnSave;
 
@@ -32,6 +69,42 @@ public class BookController  {
     @FXML
     private TextField txtTitle;
 
+
+     public void initialize() throws ClassNotFoundException, SQLException {
+        colId.setCellValueFactory(new PropertyValueFactory<>("book_id"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        colCId.setCellValueFactory(new PropertyValueFactory<>("category_id"));
+        colAvailable.setCellValueFactory(new PropertyValueFactory<>("available"));
+        colCount.setCellValueFactory(new PropertyValueFactory<>("book_count"));
+
+        getAllBooks();
+
+
+
+     }
+     public void getAllBooks(){
+        try {
+            ArrayList<BooksDto> booksList = BooksController.getAll();
+            ObservableList<BooksDto> booksDtoList = FXCollections.observableArrayList(booksList);
+            tblBooks.setItems(booksDtoList);
+            System.out.println(booksDtoList);
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Error loading books: " + e.getMessage()).show();
+        }
+
+     }
+
+
+    @FXML
+    void btnReloadOnAction(ActionEvent event) throws Exception {
+
+      getAllBooks();
+    }
+
+    
+
     
 
     @FXML
@@ -50,10 +123,13 @@ public class BookController  {
             BooksDto dto = new BooksDto(book_id, title, author, isbn, category_id, available, book_count);
             String save = BooksController.save(dto);
             System.out.println("Save response: " + save);
+            new Alert(Alert.AlertType.CONFIRMATION,"Customer save successfuly!!!").show();
         } catch (NumberFormatException e) {
             System.out.println("Invalid number format: " + e.getMessage());
+            new Alert(Alert.AlertType.ERROR,"Invalid number format: " + e.getMessage()).show();
         } catch (Exception e) {
             System.out.println("Error saving book: " + e.getMessage());
+            new Alert(Alert.AlertType.ERROR,"Error saving book: " + e.getMessage() ).show();
         }
 
        
@@ -64,6 +140,8 @@ public class BookController  {
         System.out.println("CategoryID : "+txtCategoryId.getText());
         System.out.println("Available : "+txtAvailable.getText());
         System.out.println("Bookcount : "+txtBookcount.getText());
+
+        getAllBooks();
 
  
     }
