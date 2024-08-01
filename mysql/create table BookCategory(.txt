@@ -1,0 +1,104 @@
+create table BookCategory(
+       category_id VARCHAR(10),
+       name VARCHAR(255) NOT NULL,
+       description VARCHAR(255),
+       PRIMARY KEY (category_id)
+);
+
+
+create table Books(
+       book_id VARCHAR(10),
+       title VARCHAR(255) NOT NULL,
+       author VARCHAR(255) NOT NULL,
+       isbn VARCHAR(13) NOT NULL UNIQUE,
+       category_id VARCHAR(10),
+       available BOOLEAN DEFAULT TRUE,
+       book_count INT NOT NULL DEFAULT 1,
+       PRIMARY KEY (book_id),
+       FOREIGN KEY (category_id) REFERENCES BookCategory(category_id)
+);
+
+
+create table Member(
+       member_id VARCHAR(10),
+       name VARCHAR(255) NOT NULL,
+       address VARCHAR(255) NOT NULL,
+       age INT,
+       contact VARCHAR(13) NOT NULL,
+       PRIMARY KEY (member_id)
+);
+
+
+create table BorrowingTransaction(
+       transaction_id INT,
+       book_id VARCHAR(10),
+       member_id VARCHAR(10),
+       borrow_date DATE NOT NULL,
+       due_date DATE NOT NULL,
+       return_date DATE,
+       fine DECIMAL(10,2),
+       PRIMARY KEY (transaction_id),
+       FOREIGN KEY (book_id) REFERENCES Books(book_id),
+       FOREIGN KEY (member_id) REFERENCES Member(member_id)
+);
+
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C001', 'Fiction', 'Fictional books and novels');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C002', 'Science', 'Books related to science and technology');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C003', 'History', 'Books about historical events and figures');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C004', 'Biography', 'Biographies and autobiographies');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C005', 'Travel', 'Travel and exploration books');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C006', 'Philosophy', 'Books on philosophical topics');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C007', 'Technology', 'Books about technology and innovation');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C008', 'Health', 'Books on health and wellness');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C009', 'Cooking', 'Cookbooks and culinary guides');
+INSERT INTO BookCategory (category_id, name, description) VALUES ('C010', 'Art', 'Books on art and design');
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0001', 'Madol Doova', 'Martin Wickramasinghe', '9789552101117', 'C001', TRUE, 5);
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0002', 'Viragaya', 'Martin Wickramasinghe', '9789552101124', 'C001', TRUE, 3);
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0003', 'Kali Yugaya', 'Simon Nawagattegama', '9789555690530', 'C001', TRUE, 4);
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0004', 'The Road from Elephant Pass', 'Nihal De Silva', '9789558095691', 'C001', TRUE, 2);
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0005', 'The Ceaseless Chatter of Demons', 'Ashok Ferrey', '9789555082454', 'C001', TRUE, 3);
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0006', 'Chinaman: The Legend of Pradeep Mathew', 'Shehan Karunatilaka', '9789557743018', 'C001', TRUE, 6);
+
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0007', 'Water', 'John Gimlette', '9781408843341', 'C002', TRUE, 4);
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0008', 'Spices', 'M. L. C. Wijesuriya', '9789555731231', 'C002', TRUE, 2);
+
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0009', 'Sri Lanka in the Modern Age: A History', 'Nira Wickramasinghe', '9780190225798', 'C003', TRUE, 5);
+INSERT INTO Books (book_id, title, author, isbn, category_id, available, book_count) VALUES ('B0010', 'A History of Sri Lanka', 'K. M. De Silva', '9789558095314', 'C003', TRUE, 3);
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0001', 'Amal Perera', '123 Main St, Colombo', 25, '0771234567');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0002', 'Nimal Silva', '456 High St, Kandy', 30, '0772345678');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0003', 'Sunil Wijesinghe', '789 Park St, Galle', 35, '0773456789');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0004', 'Chamara Fernando', '101 Low St, Matara', 28, '0774567890');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0005', 'Lakmal Jayawardena', '202 Mid St, Jaffna', 33, '0775678901');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0006', 'Kumara Bandara', '303 Up St, Anuradhapura', 40, '0776789012');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0007', 'Pradeep Weerasinghe', '404 East St, Negombo', 26, '0777890123');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0008', 'Samanthi Rathnayake', '505 West St, Trincomalee', 29, '0778901234');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0009', 'Dilani Ekanayake', '606 North St, Kurunegala', 32, '0779012345');
+INSERT INTO Member (member_id, name, address, age, contact) VALUES ('L0010', 'Ruwanthi Perera', '707 South St, Batticaloa', 27, '0770123456');
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+INSERT INTO BorrowingTransaction (transaction_id, book_id, member_id, borrow_date, due_date, return_date, fine) VALUES (1, 'B0001', 'L0001', '2024-07-01', '2024-07-15', NULL, 0.00);
+INSERT INTO BorrowingTransaction (transaction_id, book_id, member_id, borrow_date, due_date, return_date, fine) VALUES (2, 'B0002', 'L0002', '2024-07-02', '2024-07-16', NULL, 0.00);
+INSERT INTO BorrowingTransaction (transaction_id, book_id, member_id, borrow_date, due_date, return_date, fine) VALUES (3, 'B0003', 'L0003', '2024-07-03', '2024-07-17', '2024-07-18', 2.00);
+INSERT INTO BorrowingTransaction (transaction_id, book_id, member_id, borrow_date, due_date, return_date, fine) VALUES (4, 'B0004', 'L0004', '2024-07-04', '2024-07-18', NULL, 0.00);
+INSERT INTO BorrowingTransaction (transaction_id, book_id, member_id, borrow_date, due_date, return_date, fine) VALUES (5, 'B0005', 'L0005', '2024-07-05', '2024-07-19', NULL, 0.00);
+INSERT INTO BorrowingTransaction (transaction_id, book_id, member_id, borrow_date, due_date, return_date, fine) VALUES (6, 'B0006', 'L0006', '2024-07-06', '2024-07-20
+
+
+
+======================================================================================
+
+
+
+
+ALTER TABLE bookcategory
+MODIFY COLUMN category_id VARCHAR(10);
