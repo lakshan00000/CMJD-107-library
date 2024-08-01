@@ -12,7 +12,7 @@ public class BooksDaoImpl implements BooksDao {
 
     @Override
     public boolean create(BooksEntity t) throws Exception {
-        return CrudUtil.executeUpdate("INSERT INTO item VALUES(?,?,?,?,?,?,?)", t.getBook_id(), t.getTitle(), t.getAuthor(), t.getIsbn(), t.getCategory_id(), t.getAvailable(), t.getBook_count());
+        return CrudUtil.executeUpdate("INSERT INTO Books VALUES(?,?,?,?,?,?,?)", t.getBook_id(), t.getTitle(), t.getAuthor(), t.getIsbn(), t.getCategory_id(), t.getAvailable(), t.getBook_count());
     }
     @Override
     public boolean update(BooksEntity t) throws Exception {
@@ -28,7 +28,7 @@ public class BooksDaoImpl implements BooksDao {
 
     @Override
     public BooksEntity get(Object id) throws Exception {
-       ResultSet rst = CrudUtil.executeQuery("SELECT * FROM item WHERE ItemCode = ?",id);
+       ResultSet rst = CrudUtil.executeQuery("SELECT * FROM Books WHERE Book_id = ?",id);
        if (rst.next()) {
         BooksEntity entity = new BooksEntity(rst. getString("Book_id"),
                        rst.getString("Title"),rst.getString("Author"),
