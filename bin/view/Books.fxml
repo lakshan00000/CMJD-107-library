@@ -56,5 +56,10 @@
       <Label layoutX="340.0" layoutY="201.0" prefHeight="26.0" prefWidth="70.0" text="Category_ID" />
       <Label layoutX="615.0" layoutY="196.0" prefHeight="26.0" prefWidth="58.0" text="Available" />
       <Button fx:id="btnReload" layoutX="45.0" layoutY="389.0" mnemonicParsing="false" onAction="#btnReloadOnAction" prefHeight="26.0" prefWidth="70.0" text="Reload" />
+      <Button fx:id="btnBack" layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnBackOnAction" text="&lt;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

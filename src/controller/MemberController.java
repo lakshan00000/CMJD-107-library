@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -9,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -20,6 +23,25 @@ import service.ServiceFactory;
 import service.custom.MemberService;
 
 public class MemberController {
+
+
+        @FXML
+    private AnchorPane root;
+
+    @FXML
+    private Button btnBack;
+
+
+    
+    @FXML
+    void btnBackOnAction(ActionEvent event) throws IOException {
+         System.out.println("Customer button clicked");
+        this.root.getChildren().clear();
+        Parent node = FXMLLoader.load(this.getClass().getResource("/view/Main.fxml"));
+        this.root.getChildren().add(node);
+
+
+    }
 
     @FXML
     private TableView<?> tblMember;
