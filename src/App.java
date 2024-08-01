@@ -14,9 +14,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-       URL resource = getClass().getResource("/view/Books.fxml");
+       URL resource = getClass().getResource("/view/Main.fxml");
        Parent root = FXMLLoader.load(resource);
        primaryStage.setScene(new Scene(root));
        primaryStage.show();
+       primaryStage.setTitle("Library Management System");
     }
 }

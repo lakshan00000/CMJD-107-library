@@ -1,6 +1,7 @@
 package dao;
 
 import dao.custom.impl.BooksDaoImpl;
+import dao.custom.impl.MemberDaoImpl;
 
 public class DaoFactory {
     private static DaoFactory daoFactory;
@@ -18,6 +19,8 @@ public class DaoFactory {
         switch(type){
             case Books:
                return new BooksDaoImpl();
+               case Member:
+               return new MemberDaoImpl();
             default:
                return null;
         }
@@ -25,6 +28,9 @@ public class DaoFactory {
 
     public enum DaoTypes{
         Books,Member,BookCategory,BorrowigTransaction;
+
     }
+
+  
 
 }

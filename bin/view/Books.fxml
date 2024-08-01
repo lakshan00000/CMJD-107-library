@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookController">
    <children>
-      <Label alignment="CENTER" layoutY="6.0" prefHeight="98.0" prefWidth="890.0" text="LIBRARY BOOKS" textFill="#8e6c6c">
+      <Label alignment="CENTER" layoutX="-8.0" layoutY="-2.0" prefHeight="100.0" prefWidth="898.0" text="LIBRARY BOOKS" textFill="#a64646">
          <font>
             <Font name="Aparajita" size="71.0" />
          </font>
