@@ -35,7 +35,7 @@ public class MemberController {
     
     @FXML
     void btnBackOnAction(ActionEvent event) throws IOException {
-         System.out.println("Customer button clicked");
+         System.out.println("Back button clicked");
         this.root.getChildren().clear();
         Parent node = FXMLLoader.load(this.getClass().getResource("/view/Main.fxml"));
         this.root.getChildren().add(node);
@@ -87,11 +87,29 @@ public class MemberController {
     @FXML
     private TextField txtName;
 
+   
+
+
+
+    
+    @FXML
+    void btnReloadOnAction(ActionEvent event) throws Exception {
+
+    }
+
+
+      @FXML
+    void btnSaveOnAction(ActionEvent event) {
+
+    }
+       
 
 
 
 
-    private MemberService memberService = (MemberService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.Member);
+
+
+   /* private MemberService memberService = (MemberService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.Member);
 
     public MemberDto getMember(String member_id) throws Exception{
 
@@ -134,7 +152,7 @@ public class MemberController {
 
 
 
-      @FXML
+     /*@FXML
     void btnSaveOnAction(ActionEvent event) {
        
        
@@ -182,5 +200,5 @@ public static ArrayList<MemberDto>getAll() throws Exception{
   
     public MemberDto get(String member_id) throws Exception{
         return MemberService.get(member_id);
-    }
+    }*/
 }

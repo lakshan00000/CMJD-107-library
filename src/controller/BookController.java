@@ -268,7 +268,7 @@ private void clearTextFields() {
 
     @FXML
     void btnBackOnAction(ActionEvent event) throws IOException {
-         System.out.println("Customer button clicked");
+         System.out.println("Back button clicked");
         this.root.getChildren().clear();
         Parent node = FXMLLoader.load(this.getClass().getResource("/view/Main.fxml"));
         this.root.getChildren().add(node);

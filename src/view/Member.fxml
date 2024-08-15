@@ -8,23 +8,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberContrller">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" style="-fx-background-color: #70a1ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberController">
    <children>
-      <Label alignment="CENTER" layoutY="31.0" prefHeight="98.0" prefWidth="890.0" text="LIBRARY MEMBER">
+      <Label alignment="CENTER" layoutY="14.0" prefHeight="98.0" prefWidth="890.0" text="LIBRARY MEMBER">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-      <Label layoutX="76.0" layoutY="166.0" prefHeight="37.0" prefWidth="180.0" text="MemberID" />
-      <Label layoutX="76.0" layoutY="242.0" prefHeight="37.0" prefWidth="180.0" text="Age" />
-      <Label layoutX="341.0" layoutY="166.0" prefHeight="37.0" prefWidth="180.0" text="Name" />
-      <Label layoutX="341.0" layoutY="242.0" prefHeight="37.0" prefWidth="180.0" text="Contact" />
-      <Label layoutX="629.0" layoutY="166.0" prefHeight="37.0" prefWidth="180.0" text="Address" />
-      <TextField fx:id="txtID" layoutX="49.0" layoutY="204.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtAge" layoutX="49.0" layoutY="280.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtName" layoutX="302.0" layoutY="204.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtContact" layoutX="302.0" layoutY="279.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtAddress" layoutX="590.0" layoutY="204.0" prefHeight="38.0" prefWidth="172.0" />
+      <Label layoutX="76.0" layoutY="136.0" prefHeight="37.0" prefWidth="180.0" text="MemberID">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="76.0" layoutY="223.0" prefHeight="37.0" prefWidth="180.0" text="Age">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="324.0" layoutY="136.0" prefHeight="37.0" prefWidth="180.0" text="Name">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="324.0" layoutY="223.0" prefHeight="37.0" prefWidth="180.0" text="Contact">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="606.0" layoutY="136.0" prefHeight="37.0" prefWidth="180.0" text="Address">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="txtID" layoutX="76.0" layoutY="174.0" prefHeight="38.0" prefWidth="172.0" />
+      <TextField fx:id="txtAge" layoutX="76.0" layoutY="260.0" prefHeight="38.0" prefWidth="172.0" />
+      <TextField fx:id="txtName" layoutX="319.0" layoutY="174.0" prefHeight="38.0" prefWidth="172.0" />
+      <TextField fx:id="txtContact" layoutX="319.0" layoutY="260.0" prefHeight="38.0" prefWidth="172.0" />
+      <TextField fx:id="txtAddress" layoutX="598.0" layoutY="174.0" prefHeight="38.0" prefWidth="172.0" />
       <TableView fx:id="tblMember" layoutX="42.0" layoutY="410.0" prefHeight="299.0" prefWidth="818.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="99.9999771118164" text="Member_ID" />
@@ -34,18 +49,23 @@
             <TableColumn fx:id="colContact" prefWidth="165.5999755859375" text="Contact" />
         </columns>
       </TableView>
-      <Button fx:id="btnSave" layoutX="405.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #4a69bd;" text="Save" textFill="#f4f1f1">
+      <Button fx:id="btnSave" layoutX="405.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Save" textFill="#f4f1f1">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnUpdate" layoutX="552.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #4a69bd;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" layoutX="552.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Update" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnDelete" layoutX="694.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #4a69bd;" text="Delete" textFill="#fcf9f9">
+      <Button fx:id="btnDelete" layoutX="694.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Delete" textFill="#fcf9f9">
          <font>
             <Font size="14.0" />
          </font></Button>
       <Button fx:id="btnReload" layoutX="50.0" layoutY="375.0" mnemonicParsing="false" onAction="#btnReloadOnAction" text="Reload" />
+      <Button fx:id="btnBack" layoutX="42.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="38.0" prefWidth="34.0" text="&lt;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
