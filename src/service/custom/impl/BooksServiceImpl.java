@@ -28,15 +28,15 @@ public class BooksServiceImpl implements BooksService {
     
 
     @Override
-    public String delete(BooksDto booksDto) throws Exception {
-        return booksDao.delete(booksDto) ? "Success":"Fail" ;
+    public String delete(String book_id) throws Exception {
+        return booksDao.delete(book_id) ? "Success": "Fail" ;
     }
 
     @Override
     public BooksDto get(String book_id) throws Exception {
-        BooksDao entity = (BooksDao) booksDao.get(book_id);
+        BooksEntity entity = booksDao.get(book_id);
         if(entity != null){
-            return getBooksDto ((BooksEntity) entity);
+            return getBooksDto ( entity);
         }
         return null;
     }

@@ -30,7 +30,7 @@ public class MainController {
 
     @FXML
     void btnBooksOnAction(ActionEvent event) throws IOException {
-          System.out.println("Customer button clicked");
+          System.out.println("Books button clicked");
         this.root.getChildren().clear();
         Parent node = FXMLLoader.load(this.getClass().getResource("/view/Books.fxml"));
         this.root.getChildren().add(node);
@@ -39,7 +39,7 @@ public class MainController {
 
     @FXML
     void btnCategoryOnAction(ActionEvent event) throws IOException {
-        System.out.println("Customer button clicked");
+        System.out.println("Category button clicked");
         this.root.getChildren().clear();
         Parent node = FXMLLoader.load(this.getClass().getResource("/view/Category.fxml"));
         this.root.getChildren().add(node);
@@ -49,7 +49,7 @@ public class MainController {
 
     @FXML
     void btnMemberOnAction(ActionEvent event) throws IOException {
-        System.out.println("Customer button clicked");
+        System.out.println("Member button clicked");
         this.root.getChildren().clear();
         Parent node = FXMLLoader.load(this.getClass().getResource("/view/Member.fxml"));
         this.root.getChildren().add(node);
@@ -64,7 +64,7 @@ public class MainController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
-        stage.setTitle("Customer Form");
+        stage.setTitle("Transaction Form");
 
     }
 

@@ -22,11 +22,11 @@ public class BooksController {
     public static String save(BooksDto booksDto) throws Exception{
        return booksService.save(booksDto);
     }
-    public String update(BooksDto booksDto) throws Exception{
+    public static String update(BooksDto booksDto) throws Exception{
         return booksService.update(booksDto); 
     }
-    public String delete (BooksDto booksDto) throws Exception{
-        return booksService.delete(booksDto);
+    public  String delete(String book_id) throws Exception{
+        return booksService.delete(book_id);
     }
     public static ArrayList<BooksDto>getAll() throws Exception{
         return booksService.getAll() ;

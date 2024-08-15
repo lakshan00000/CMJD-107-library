@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CategoryController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" style="-fx-background-color: #60a3bc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CategoryController">
    <children>
       <Label alignment="CENTER" layoutX="4.0" layoutY="31.0" prefHeight="82.0" prefWidth="882.0" text="BOOK CATEGORY">
          <font>
@@ -27,5 +28,38 @@
             <TableColumn prefWidth="283.1999816894531" text="C2" />
         </columns>
       </TableView>
+      <TextField layoutX="173.0" layoutY="154.0" prefHeight="26.0" prefWidth="158.0" />
+      <TextField layoutX="173.0" layoutY="220.0" prefHeight="26.0" prefWidth="250.0" />
+      <TextField layoutX="173.0" layoutY="299.0" prefHeight="26.0" prefWidth="284.0" />
+      <JFXButton layoutX="692.0" layoutY="143.0" prefHeight="37.0" prefWidth="102.0" style="-fx-background-color: #fad390;" text="Save">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="692.0" layoutY="214.0" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: #fad390;" text="Update">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="692.0" layoutY="293.0" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: #fad390;" text="Delete">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="68.0" layoutY="154.0" text="Category_ID :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="224.0" text="Name          : ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="303.0" text="Description :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

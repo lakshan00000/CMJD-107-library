@@ -16,18 +16,19 @@ public class BooksDaoImpl implements BooksDao {
     }
     @Override
     public boolean update(BooksEntity t) throws Exception {
-        return CrudUtil.executeUpdate("UPDATE Books SET Title = ?, Author = ?, Isbn = ?, Category_id = ?, Available = ?, Book_count = ?, WHERE Book_id =?", 
-        t.getTitle(), t.getAuthor(), t.getIsbn(), t.getCategory_id(), t.getAvailable(), t.getBook_count() , t.getBook_id());
+        return CrudUtil.executeUpdate("UPDATE Books SET Title = ?, Author = ?, Isbn = ?, Category_id = ?, Available = ?, Book_count = ? WHERE Book_id = ?", 
+        t.getTitle(), t.getAuthor(), t.getIsbn(), t.getCategory_id(), t.getAvailable(), t.getBook_count(), t.getBook_id());
+        
     }
 
     @Override
-    public boolean delete(Object id) throws Exception {
+    public boolean delete(String id) throws Exception {
         return CrudUtil.executeUpdate("DELETE FROM books WHERE Book_id = ?", id);
        
     }
 
     @Override
-    public BooksEntity get(Object id) throws Exception {
+    public BooksEntity get(String id) throws Exception {
        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM Books WHERE Book_id = ?",id);
        if (rst.next()) {
         BooksEntity entity = new BooksEntity(rst. getString("Book_id"),
@@ -54,6 +55,7 @@ public class BooksDaoImpl implements BooksDao {
        }
        return booksEntities;
     }
+   
 
  
 

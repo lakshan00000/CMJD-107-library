@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+import com.jfoenix.controls.JFXButton.ButtonType;
+
 import dto.BooksDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,6 +57,13 @@ public class BookController  {
     @FXML
     private TableColumn<BooksDto, String> colTitle;
 
+    @FXML
+    private Button btnDelete;
+
+    @FXML
+    private Button btnUpdate;
+
+
        @FXML
     private Button btnReload;
 
@@ -92,7 +103,12 @@ public class BookController  {
 
         getAllBooks();
 
-
+        tblBooks.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                populateTextFields(newSelection);
+            }
+        });
+    
 
      }
      public void getAllBooks(){
@@ -107,15 +123,35 @@ public class BookController  {
 
      }
 
+     
+
+private void populateTextFields(BooksDto selectedBook) {
+    txtBookId.setText(selectedBook.getBook_id());
+    txtTitle.setText(selectedBook.getTitle());
+    txtAuthor.setText(selectedBook.getAuthor());
+    txtIsbn.setText(selectedBook.getIsbn());
+    txtCategoryId.setText(selectedBook.getCategory_id());
+    txtAvailable.setText(String.valueOf(selectedBook.getAvailable()));
+    txtBookcount.setText(String.valueOf(selectedBook.getBook_count()));
+}
+
+private void clearTextFields() {
+    txtBookId.clear();
+    txtTitle.clear();
+    txtAuthor.clear();
+    txtIsbn.clear();
+    txtCategoryId.clear();
+    txtAvailable.clear();
+    txtBookcount.clear();
+}
+
 
     @FXML
     void btnReloadOnAction(ActionEvent event) throws Exception {
 
       getAllBooks();
     }
-
-    
-
+   
     
 
     @FXML
@@ -130,11 +166,16 @@ public class BookController  {
             String category_id = txtCategoryId.getText();
             Boolean available = Boolean.parseBoolean(txtAvailable.getText());
             Integer book_count = Integer.parseInt(txtBookcount.getText());
-    
+        
             BooksDto dto = new BooksDto(book_id, title, author, isbn, category_id, available, book_count);
-            String save = BooksController.save(dto);
-            System.out.println("Save response: " + save);
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer save successfuly!!!").show();
+            
+        
+           
+            String resp = BooksController.save(dto);
+            System.out.println("Save response: " + resp);
+            new Alert(Alert.AlertType.CONFIRMATION,"Book save successfuly!!!").show();
+            getAllBooks(); 
+            clearTextFields();
         } catch (NumberFormatException e) {
             System.out.println("Invalid number format: " + e.getMessage());
             new Alert(Alert.AlertType.ERROR,"Invalid number format: " + e.getMessage()).show();
@@ -152,10 +193,78 @@ public class BookController  {
         System.out.println("Available : "+txtAvailable.getText());
         System.out.println("Bookcount : "+txtBookcount.getText());
 
-        getAllBooks();
-
+     
  
     }
+
+    @FXML
+    void btnDeleteOnAction(ActionEvent event) {
+        BooksDto selectedBook = tblBooks.getSelectionModel().getSelectedItem(); 
+        
+    
+       
+        if (selectedBook != null) {
+           
+                    try {
+                        
+                    
+                                 
+                        BooksController booksController = new BooksController();
+
+                        
+                        String result = booksController.delete(selectedBook.getBook_id());
+            
+                        if ("Success".equals(result)) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Book deleted successfully!").show();
+                            getAllBooks(); 
+                            clearTextFields();
+                         } else{
+                            new Alert(Alert.AlertType.ERROR, "Failed to delete the book.").show();
+                        }
+                    } catch (Exception e) {
+                        new Alert(Alert.AlertType.ERROR, "Error deleting book: " + e.getMessage()).show();
+                        System.out.println("Error Deleting book: " + e.getMessage());
+                
+                
+                    }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "No book selected!").show();
+        }
+    }
+       
+      
+
+    @FXML
+    void btnUpdateOnAction(ActionEvent event) {
+
+        try {
+            BooksDto dto = new BooksDto(
+                txtBookId.getText(),
+                txtTitle.getText(),
+                txtAuthor.getText(),
+                txtIsbn.getText(),
+                txtCategoryId.getText(),
+                Boolean.parseBoolean(txtAvailable.getText()),
+                Integer.parseInt(txtBookcount.getText())
+            );
+            String updated = BooksController.update(dto);
+            if (updated != null) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Book updated successfully!").show();
+                getAllBooks();
+                clearTextFields();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to update the book.").show();
+            }
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid number format: " + e.getMessage()).show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Error updating book: " + e.getMessage()).show();
+            System.out.println("Error updating book: " + e.getMessage());
+        }
+       
+    }
+    
+
 
     @FXML
     void btnBackOnAction(ActionEvent event) throws IOException {
@@ -166,4 +275,8 @@ public class BookController  {
 
 
     }
+
+
+
+    
 }

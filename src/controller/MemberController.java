@@ -95,30 +95,28 @@ public class MemberController {
 
     public MemberDto getMember(String member_id) throws Exception{
 
-        return memberService.getMember(member_id);
+        return memberService.get(member_id);
 
     }
 
 
     
      public void initialize() throws ClassNotFoundException, SQLException {
-        colId.setCellValueFactory(new PropertyValueFactory<>("book_id"));
-        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
-        colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        colCId.setCellValueFactory(new PropertyValueFactory<>("category_id"));
-        colAvailable.setCellValueFactory(new PropertyValueFactory<>("available"));
-        colCount.setCellValueFactory(new PropertyValueFactory<>("book_count"));
-
-        getAllBooks();
+        colID.setCellValueFactory(new PropertyValueFactory<>("member_id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("addres"));
+        colAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        
+        getAllMember();
 
 
 
      }
-     public void getAllBooks(){
+     public void getAllMember(){
         try {
-            ArrayList<BooksDto> booksList = BooksController.getAll();
-            ObservableList<BooksDto> booksDtoList = FXCollections.observableArrayList(booksList);
+            ArrayList<MemberDto> memberList = MemberController.getAll();
+            ObservableList<MemberDto> memberDtoList = FXCollections.observableArrayList(memberList);
             tblMember.setItems(memberDtoList);
             System.out.println(memberDtoList);
         } catch (Exception e) {
@@ -131,24 +129,24 @@ public class MemberController {
     @FXML
     void btnReloadOnAction(ActionEvent event) throws Exception {
 
-      getAllBooks();
+      getAllMember();
     }
 
 
 
-   /*   @FXML
+      @FXML
     void btnSaveOnAction(ActionEvent event) {
        
        
         try {
-            String member_id = txtBookId.getText();
-            String name = txtTitle.getText();
-            String address = txtAuthor.getText();
-            Integer age = txtAge.getText();
-            String contact = txtCategoryId.getText();
+            String member_id = txtID.getText();
+            String name = txtName.getText();
+            String address = txtAddress.getText();
+            Integer age = Integer.parseInt(txtAge.getText());
+            String contact = txtContact.getText();
            
             MemberDto dto = new MemberDto(member_id, name, address, age, contact );
-            String save = BooksController.save(dto);
+            String save = MemberController.save(dto);
             System.out.println("Save response: " + save);
             new Alert(Alert.AlertType.CONFIRMATION,"Customer save successfuly!!!").show();
         } catch (NumberFormatException e) {
@@ -160,15 +158,29 @@ public class MemberController {
         }
 
        
-        System.out.println("BookID : "+txtBookId.getText());
-        System.out.println("Title : "+txtTitle.getText());
-        System.out.println("Author : "+txtAuthor.getText());
-        System.out.println("Isbn : "+txtIsbn.getText());
-        System.out.println("CategoryID : "+txtCategoryId.getText());
+        System.out.println("MemberID : "+txtID.getText());
+        System.out.println("Name : "+txtName.getText());
+        System.out.println("Address : "+txtAddress.getText());
+        System.out.println("Age : "+txtAge.getText());
+        System.out.println("Contact : "+txtContact.getText());
        
-        getAllBooks();
+        getAllMember();
 
  
-    }*/
+    }
 
+
+
+    private static String save(MemberDto dto) throws Exception {
+        return MemberService.save(memberDto);
+
+}
+
+public static ArrayList<MemberDto>getAll() throws Exception{
+    return MemberService.getAll() ;
+}
+  
+    public MemberDto get(String member_id) throws Exception{
+        return MemberService.get(member_id);
+    }
 }
