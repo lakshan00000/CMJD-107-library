@@ -3,11 +3,8 @@ package service.custom.impl;
 import java.util.ArrayList;
 
 import dao.DaoFactory;
-import dao.custom.BooksDao;
 import dao.custom.CategoryDao;
-import dto.BooksDto;
 import dto.CategoryDto;
-import entity.BooksEntity;
 import entity.CategoryEntity;
 import service.custom.CategoryService;
 

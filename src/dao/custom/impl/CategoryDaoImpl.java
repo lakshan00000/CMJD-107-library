@@ -1,7 +1,9 @@
 package dao.custom.impl;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import dao.CrudUtil;
 import dao.custom.CategoryDao;
 import entity.CategoryEntity;
 
@@ -9,32 +11,46 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public boolean create(CategoryEntity t) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        return CrudUtil.executeUpdate("INSERT INTO BookCategory VALUES(?,?,?)", t.getCategory_id(), t.getName(), t.getDescription());
     }
 
     @Override
     public boolean update(CategoryEntity t) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+       
+        return CrudUtil.executeUpdate("UPDATE BookCategory SET Name = ?, Description = ? WHERE Category_id = ?", 
+    t.getName(), t.getDescription(), t.getCategory_id());
     }
 
     @Override
     public boolean delete(String id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        return CrudUtil.executeUpdate("DELETE FROM BookCategory WHERE Category_id = ?", id);
     }
 
     @Override
     public CategoryEntity get(String id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM BookCategory WHERE Category_id = ?",id);
+         if (rst.next()) {
+        CategoryEntity entity = new CategoryEntity(rst. getString("Category_id"),
+                       rst.getString("Name"),rst.getString("Description"));
+          return entity;
+        
+       }
+        return null;
     }
 
     @Override
     public ArrayList<CategoryEntity> getAll() throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
-    }
+        ArrayList<CategoryEntity> categoryEntities = new ArrayList<>();
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM BookCategory");
+        while ( rst.next()) {
+         CategoryEntity entity = new CategoryEntity(rst. getString("Category_id"),
+                        rst.getString("Name"),rst.getString("Description"));
+                     categoryEntities.add(entity);
+ 
+        }
+        return categoryEntities;
+     }
+ 
+    
 
 }
