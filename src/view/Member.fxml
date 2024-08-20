@@ -53,11 +53,11 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnUpdate" layoutX="552.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" layoutX="552.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Update" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnDelete" layoutX="694.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Delete" textFill="#fcf9f9">
+      <Button fx:id="btnDelete" layoutX="694.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Delete" textFill="#fcf9f9">
          <font>
             <Font size="14.0" />
          </font></Button>

@@ -17,9 +17,7 @@ public class BooksDto {
     private Boolean available;
     private Integer book_count;
 
-    public BooksDto() {
-    }
-
+   
    
 
 

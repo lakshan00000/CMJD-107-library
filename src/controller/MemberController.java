@@ -44,7 +44,7 @@ public class MemberController {
     }
 
     @FXML
-    private TableView<?> tblMember;
+    private TableView<MemberDto> tblMember;
 
 
     @FXML
@@ -57,19 +57,22 @@ public class MemberController {
     private Button btnUpdate;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private Button btnReload;
 
     @FXML
-    private TableColumn<?, ?> colAge;
+    private TableColumn<MemberDto, String> colAddress;
 
     @FXML
-    private TableColumn<?, ?> colContact;
+    private TableColumn<MemberDto, Integer> colAge;
 
     @FXML
-    private TableColumn<?, ?> colID;
+    private TableColumn<MemberDto, String> colContact;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<MemberDto, String> colID;
+
+    @FXML
+    private TableColumn<MemberDto, String> colName;
 
    
     @FXML
@@ -91,25 +94,11 @@ public class MemberController {
 
 
 
-    
-    @FXML
-    void btnReloadOnAction(ActionEvent event) throws Exception {
-
-    }
-
-
-      @FXML
-    void btnSaveOnAction(ActionEvent event) {
-
-    }
-       
 
 
 
 
-
-
-   /* private MemberService memberService = (MemberService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.Member);
+   private static MemberService memberService = (MemberService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.Member);
 
     public MemberDto getMember(String member_id) throws Exception{
 
@@ -122,26 +111,50 @@ public class MemberController {
      public void initialize() throws ClassNotFoundException, SQLException {
         colID.setCellValueFactory(new PropertyValueFactory<>("member_id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("addres"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colAge.setCellValueFactory(new PropertyValueFactory<>("age"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
         
         getAllMember();
+
+        tblMember.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                populateTextFields(newSelection);
+            }
+        });
 
 
 
      }
      public void getAllMember(){
         try {
-            ArrayList<MemberDto> memberList = MemberController.getAll();
+            ArrayList<MemberDto> memberList = memberService.getAll();
             ObservableList<MemberDto> memberDtoList = FXCollections.observableArrayList(memberList);
             tblMember.setItems(memberDtoList);
             System.out.println(memberDtoList);
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "Error loading books: " + e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR, "Error loading Member: " + e.getMessage()).show();
         }
 
      }
+
+     private void populateTextFields(MemberDto selectedMember) {
+        txtID.setText(selectedMember.getMember_id());
+        txtName.setText(selectedMember.getName());
+        txtAddress.setText(selectedMember.getAddress());
+        txtContact.setText(selectedMember.getContact());
+        txtAge.setText(String.valueOf(selectedMember.getAge()));
+       
+    }
+    
+    private void clearTextFields() {
+        txtID.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtAge.clear();
+        txtContact.clear();
+        
+    }
 
 
     @FXML
@@ -152,7 +165,7 @@ public class MemberController {
 
 
 
-     /*@FXML
+     @FXML
     void btnSaveOnAction(ActionEvent event) {
        
        
@@ -164,15 +177,17 @@ public class MemberController {
             String contact = txtContact.getText();
            
             MemberDto dto = new MemberDto(member_id, name, address, age, contact );
-            String save = MemberController.save(dto);
+            String save = memberService.save(dto);
             System.out.println("Save response: " + save);
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer save successfuly!!!").show();
+            new Alert(Alert.AlertType.CONFIRMATION,"Member save successfuly!!!").show();
+            getAllMember();
+            clearTextFields();
         } catch (NumberFormatException e) {
             System.out.println("Invalid number format: " + e.getMessage());
             new Alert(Alert.AlertType.ERROR,"Invalid number format: " + e.getMessage()).show();
         } catch (Exception e) {
-            System.out.println("Error saving book: " + e.getMessage());
-            new Alert(Alert.AlertType.ERROR,"Error saving book: " + e.getMessage() ).show();
+            System.out.println("Error saving Member: " + e.getMessage());
+            new Alert(Alert.AlertType.ERROR,"Error saving Member: " + e.getMessage() ).show();
         }
 
        
@@ -182,23 +197,77 @@ public class MemberController {
         System.out.println("Age : "+txtAge.getText());
         System.out.println("Contact : "+txtContact.getText());
        
-        getAllMember();
+      
 
  
     }
 
 
+    @FXML
+    void btnDeleteOnAction(ActionEvent event) {
+        MemberDto selectedMember = tblMember.getSelectionModel().getSelectedItem(); 
+        
+    
+       
+        if (selectedMember != null) {
+           
+                    try {
+                        
+                    
+                                 
+                      
 
-    private static String save(MemberDto dto) throws Exception {
-        return MemberService.save(memberDto);
+                        
+                        String result = memberService.delete(selectedMember.getMember_id());
+            
+                        if ("Success".equals(result)) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Member deleted successfully!").show();
+                            getAllMember(); 
+                            clearTextFields();
+                         } else{
+                            new Alert(Alert.AlertType.ERROR, "Failed to delete the member.").show();
+                        }
+                    } catch (Exception e) {
+                        new Alert(Alert.AlertType.ERROR, "Error deleting member: " + e.getMessage()).show();
+                        System.out.println("Error Deleting member: " + e.getMessage());
+                
+                
+                    }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "No member selected!").show();
+        }
+    }
+       
+      
 
-}
+    @FXML
+    void btnUpdateOnAction(ActionEvent event) {
 
-public static ArrayList<MemberDto>getAll() throws Exception{
-    return MemberService.getAll() ;
-}
-  
-    public MemberDto get(String member_id) throws Exception{
-        return MemberService.get(member_id);
-    }*/
+        try {
+            MemberDto dto = new MemberDto(
+                txtID.getText(),
+                txtName.getText(),
+                txtAddress.getText(),
+                Integer.parseInt(txtAge.getText()),
+                txtContact.getText()
+            );
+            String update = memberService.update(dto);
+            if (update != null) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Member updated successfully!").show();
+                getAllMember();
+                clearTextFields();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to update the member.").show();
+            }
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid number format: " + e.getMessage()).show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Error updating member: " + e.getMessage()).show();
+            System.out.println("Error updating member: " + e.getMessage());
+        }
+       
+    }
+
+
+
 }

@@ -61,8 +61,8 @@ public class MemberServiceImpl implements MemberService {
         return memberDao.update(entity) ? "Success": "Fail";
     }
     @Override
-    public String delete(MemberDto memberDto) throws Exception {
-        return memberDao.delete(memberDto) ;
+    public String delete(String member_id) throws Exception {
+        return memberDao.delete(member_id)? "Success": "Fail" ;
     }
     @Override
     public ArrayList<MemberDto> getAll() throws Exception {

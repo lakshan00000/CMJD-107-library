@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
-import com.jfoenix.controls.JFXButton.ButtonType;
-
 import dto.BooksDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
