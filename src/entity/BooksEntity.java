@@ -9,9 +9,7 @@ public class BooksEntity {
     private Boolean available;
     private Integer book_count;
 
-    public BooksEntity(){
-
-    }
+    
 
     public BooksEntity(String book_id, String title, String author, String isbn, String category_id, Boolean available, Integer book_count) {
         this.book_id = book_id;

@@ -5,41 +5,63 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" style="-fx-background-color: #70a1ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" style="-fx-background-color: #60a3bc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberController">
    <children>
-      <Label alignment="CENTER" layoutY="14.0" prefHeight="98.0" prefWidth="890.0" text="LIBRARY MEMBER">
+    <ImageView fitHeight="750.0" fitWidth="890.0" opacity="0.82" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/seen8.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutY="14.0" opacity="0.78" prefHeight="88.0" prefWidth="890.0" style="-fx-background-color: #7f8c8d;" text="LIBRARY MEMBER" textFill="#151999">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-      <Label layoutX="76.0" layoutY="136.0" prefHeight="37.0" prefWidth="180.0" text="MemberID">
+      <Label layoutX="76.0" layoutY="136.0" opacity="0.78" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #ced6e0;" text=" MemberID">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="76.0" layoutY="223.0" prefHeight="37.0" prefWidth="180.0" text="Age">
+      <Label layoutX="76.0" layoutY="223.0" opacity="0.78" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #ced6e0;" text=" Age">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="324.0" layoutY="136.0" prefHeight="37.0" prefWidth="180.0" text="Name">
+      <Label layoutX="319.0" layoutY="136.0" opacity="0.78" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #ced6e0;" text=" Name">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="324.0" layoutY="223.0" prefHeight="37.0" prefWidth="180.0" text="Contact">
+      <Label layoutX="319.0" layoutY="223.0" opacity="0.78" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #ced6e0;" text=" Contact">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="606.0" layoutY="136.0" prefHeight="37.0" prefWidth="180.0" text="Address">
+      <Label layoutX="598.0" layoutY="136.0" opacity="0.78" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #ced6e0;" text=" Address">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="txtID" layoutX="76.0" layoutY="174.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtAge" layoutX="76.0" layoutY="260.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtName" layoutX="319.0" layoutY="174.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtContact" layoutX="319.0" layoutY="260.0" prefHeight="38.0" prefWidth="172.0" />
-      <TextField fx:id="txtAddress" layoutX="598.0" layoutY="174.0" prefHeight="38.0" prefWidth="172.0" />
+      <TextField fx:id="txtID" layoutX="76.0" layoutY="174.0" prefHeight="38.0" prefWidth="162.0" promptText="MemberID">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="txtAge" layoutX="76.0" layoutY="260.0" prefHeight="38.0" prefWidth="162.0" promptText="Age">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="txtName" layoutX="319.0" layoutY="174.0" prefHeight="38.0" prefWidth="190.0" promptText="Name">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="txtContact" layoutX="319.0" layoutY="260.0" prefHeight="38.0" prefWidth="190.0" promptText="Contact">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="txtAddress" layoutX="598.0" layoutY="174.0" prefHeight="38.0" prefWidth="260.0" promptText="Address">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
       <TableView fx:id="tblMember" layoutX="42.0" layoutY="410.0" prefHeight="299.0" prefWidth="818.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="99.9999771118164" text="Member_ID" />
@@ -49,15 +71,15 @@
             <TableColumn fx:id="colContact" prefWidth="165.5999755859375" text="Contact" />
         </columns>
       </TableView>
-      <Button fx:id="btnSave" layoutX="405.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Save" textFill="#f4f1f1">
+      <Button fx:id="btnSave" layoutX="405.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #3498db;" text="Save" textFill="#3b1414">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnUpdate" layoutX="552.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" layoutX="552.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #3498db;" text="Update" textFill="#1e1515">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnDelete" layoutX="694.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #57606f;" text="Delete" textFill="#fcf9f9">
+      <Button fx:id="btnDelete" layoutX="694.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #3498db;" text="Delete" textFill="#231818">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -67,5 +89,6 @@
             <Font size="16.0" />
          </font>
       </Button>
+     
    </children>
 </AnchorPane>

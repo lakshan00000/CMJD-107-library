@@ -14,7 +14,12 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="890.0" style="-fx-background-color: #95a5a6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <Label alignment="CENTER" layoutY="111.0" prefHeight="82.0" prefWidth="890.0" style="-fx-background-color: #7f8c8d;" text="LIBRARY MANAGEMENT SYSTEM" textFill="#251166">
+    <ImageView fitHeight="750.0" fitWidth="890.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/seen1.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutY="111.0" opacity="0.75" prefHeight="82.0" prefWidth="890.0" style="-fx-background-color: #7f8c8d;" text="LIBRARY MANAGEMENT SYSTEM" textFill="#251166">
          <font>
             <Font size="39.0" />
          </font>
@@ -82,5 +87,6 @@
          <image>
             <Image url="@../Image/icon4.png" />
          </image></ImageView>
+     
    </children>
 </AnchorPane>
